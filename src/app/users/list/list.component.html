@@ -1,0 +1,37 @@
+<h1>Users</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Name</th>
+            <th style="width: 30%">Email</th>
+            <th style="width: 30%">Role</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <!-- Percorra os usuários e monte a tabela com os dados deles-->
+        <tr *ngFor="let u of users">
+            <td>{{u.firstName}} {{u.lastName}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.role}}</td>
+            <td>
+
+                
+                <a [routerLink]="['edit', u.id]" class="btn btn-primary btn-sm">Editar</a>
+                
+                <button class="btn btn-danger btn-sm" (click)="deleteUser(u.id)">
+                    Excluir
+                </button>
+               
+            </td>
+        </tr>        
+
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
